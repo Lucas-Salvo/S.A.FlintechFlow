@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard · FinTech Flow</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="theme.css" />
+  <link rel="stylesheet" href="app.css" />
+</head>
+<body data-page="dashboard">
+<div class="app">
+
+  <aside class="sidebar" id="sidebar">
+    <!-- [ETAPA 2 · Frontend] Logo FinTech Flow (◈ + wordmark; estilos em theme.css .logo) -->
+<a href="dashboard.html" class="logo"><span class="logo-icon">◈</span><span class="logo-text">FinTech<em>Flow</em></span></a>
+    <nav class="side-nav" aria-label="Navegação principal">
+      <p class="nav-group">Visão geral</p>
+      <a href="dashboard.html" data-nav="dashboard"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="7" height="9" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="16" width="7" height="5" rx="1.5"/></svg>Dashboard</a>
+      <a href="relatorios.html" data-nav="relatorios"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>Relatórios</a>
+      <p class="nav-group">Operações</p>
+      <a href="transacoes.html" data-nav="transacoes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M7 4v16M7 20l-3-3M7 20l3-3M17 20V4M17 4l-3 3M17 4l3 3"/></svg>Transações</a>
+      <a href="nova-transacao.html" data-nav="nova-transacao"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 8v8M8 12h8"/></svg>Nova transação</a>
+      <a href="recebiveis.html" data-nav="recebiveis"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="6" width="20" height="13" rx="2"/><path d="M2 10h20M6 15h4"/></svg>Recebíveis</a>
+      <p class="nav-group">Controle</p>
+      <a href="auditoria.html" data-nav="auditoria"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3l8 3v6c0 4.5-3.4 8.3-8 9-4.6-.7-8-4.5-8-9V6z"/><path d="m9 12 2 2 4-4"/></svg>Auditoria</a>
+      <a href="configuracoes.html" data-nav="configuracoes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 6h10M18 6h2M4 12h4M12 12h8M4 18h12M20 18h0"/><circle cx="16" cy="6" r="2"/><circle cx="10" cy="12" r="2"/><circle cx="18" cy="18" r="2"/></svg>Configurações</a>
+    </nav>
+    <div class="side-foot">
+      <div class="avatar" aria-hidden="true" data-user-initials>··</div>
+      <div><strong data-user-name>Carregando…</strong><span>Tesouraria</span></div>
+      <button class="icon-btn" data-logout aria-label="Sair"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/></svg></button>
+    </div>
+  </aside>
+  <div class="scrim" id="scrim"></div>
+
+  <div class="main">
+    <header class="topbar">
+      <button class="icon-btn menu-btn" id="menuBtn" aria-label="Abrir menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 7h16M4 12h16M4 17h10"/></svg></button>
+      <label class="search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <input class="input" type="search" placeholder="Buscar lançamento, ID ou categoria" aria-label="Buscar" />
+      </label>
+      <div class="top-actions">
+        <span class="env" data-empresa>…</span>
+        <button class="icon-btn" aria-label="Notificações"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 8a6 6 0 1 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.9 1.9 0 0 0 3.4 0"/></svg><span class="bell-dot"></span></button>
+      </div>
+    </header>
+
+    <!-- [ETAPA 5 · Frontend] Criação do dashboard · [ETAPA 6] dados de GET /api/dashboard (app.js renderDashboard) -->
+    <main class="content">
+
+      <div class="page-head">
+        <div>
+          <p class="eyebrow" data-today></p>
+          <h1>Visão geral</h1>
+          <p>Saldo, fluxo de caixa e pendências da tesouraria.</p>
+        </div>
+        <div class="page-actions">
+          <a class="btn btn-ghost" href="relatorios.html">Ver relatório</a>
+          <a class="btn btn-primary" href="nova-transacao.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+            Nova transação
+          </a>
+        </div>
+      </div>
+
+      <section class="kpis" aria-label="Indicadores">
+        <article class="kpi accent">
+          <p class="kpi-label">Saldo consolidado</p>
+          <p class="kpi-value" id="kpiSaldo">—</p>
+          <span class="delta" id="kpiSaldoDelta"></span>
+        </article>
+        <article class="kpi">
+          <p class="kpi-label">Entradas no mês</p>
+          <p class="kpi-value pos" id="kpiEntradas">—</p>
+          <span class="delta" id="kpiEntradasDelta"></span>
+        </article>
+        <article class="kpi">
+          <p class="kpi-label">Saídas no mês</p>
+          <p class="kpi-value" id="kpiSaidas">—</p>
+          <span class="delta" id="kpiSaidasDelta"></span>
+        </article>
+        <article class="kpi">
+          <p class="kpi-label">A receber (em aberto)</p>
+          <p class="kpi-value" id="kpiReceber">—</p>
+          <span class="kpi-foot" id="kpiReceberSub"></span>
+        </article>
+      </section>
+
+      <section class="row-even">
+        <article class="card">
+          <div class="card-head">
+            <div><h2 class="card-title">Entradas × saídas</h2><p class="card-sub">Últimos 6 meses · transações concluídas</p></div>
+            <div class="legend">
+              <span><i style="background:var(--lav-600)"></i>Entradas</span>
+              <span><i style="background:#C4B5EC"></i>Saídas</span>
+            </div>
+          </div>
+          <div class="chart" id="chartFluxo"></div>
+        </article>
+
+        <article class="card">
+          <div class="card-head">
+            <div><h2 class="card-title">Evolução do saldo</h2><p class="card-sub">Saldo ao fim de cada mês</p></div>
+          </div>
+          <div class="line-wrap" id="chartSaldo"></div>
+          <div class="line-labels" id="chartSaldoLabels"></div>
+        </article>
+      </section>
+
+      <section class="row">
+        <article class="card">
+          <div class="card-head">
+            <div><h2 class="card-title">Últimas transações</h2><p class="card-sub">Lançamentos mais recentes</p></div>
+            <a class="btn btn-ghost btn-sm" href="transacoes.html">Ver todas</a>
+          </div>
+          <div class="table-wrap">
+            <table class="table">
+              <thead><tr><th>ID</th><th>Descrição</th><th>Categoria</th><th>Data</th><th>Status</th><th class="num">Valor</th></tr></thead>
+              <tbody id="ultimasTx"></tbody>
+            </table>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-head">
+            <div><h2 class="card-title">Atenção</h2><p class="card-sub">Pendências e vencimentos próximos</p></div>
+          </div>
+          <ul class="alert-list" id="alertas"></ul>
+        </article>
+      </section>
+    </main>
+  </div>
+</div>
+
+<div class="toast-stack" id="toasts" aria-live="polite"></div>
+<script src="api.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

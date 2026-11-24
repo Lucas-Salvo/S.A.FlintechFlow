@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<!-- [ETAPA 1 · Frontend] Projeto do front: HTML + CSS + JavaScript puro (ver docs/ETAPAS.md) -->
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FinTech Flow · Tesouraria inteligente</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="theme.css" />
+  <link rel="stylesheet" href="index.css" />
+</head>
+<body>
+
+  <!-- ===== ABERTURA CINEMATOGRÁFICA =====
+       A sequência de 475 frames é controlada pelo scroll (ver index.js).
+       Ao final, o título e as ações entram pela esquerda. -->
+  <section class="intro" id="intro" aria-label="Abertura FinTech Flow">
+    <div class="intro-pin" id="introPin">
+      <canvas class="intro-canvas" id="introCanvas" aria-hidden="true"></canvas>
+      <div class="intro-scrim" id="introScrim" aria-hidden="true"></div>
+
+      <div class="intro-loader" id="introLoader" role="status" aria-live="polite">
+        <span class="intro-loader-mark" aria-hidden="true">◈</span>
+        <p class="intro-loader-label">Preparando a experiência</p>
+        <div class="intro-loader-bar"><span id="introLoaderFill"></span></div>
+        <span class="intro-loader-pct" id="introLoaderPct">0%</span>
+      </div>
+
+      <div class="intro-cue" id="introCue" aria-hidden="true">
+        <span>Role para abrir</span>
+        <i></i>
+      </div>
+
+      <div class="intro-reveal" id="introReveal">
+        <div class="intro-reveal-inner" id="introRevealInner">
+          <p class="intro-kicker" data-rv="1">Tesouraria inteligente</p>
+          <h1 class="intro-title" data-rv="2">FinTech<span>Flow</span></h1>
+          <p class="intro-sub" data-rv="3">
+            Controle financeiro com precisão bancária. Entradas, saídas e recebíveis
+            com rastreabilidade total e saldo em tempo real.
+          </p>
+          <div class="intro-actions" data-rv="4">
+            <a href="login.html" class="btn-hero">Entrar</a>
+            <a href="login.html#cadastro" class="btn-hero-ghost">Criar conta grátis</a>
+          </div>
+          <p class="intro-hint" data-rv="5">Continue rolando para explorar <span>↓</span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FAIXA DE NÚMEROS ===== -->
+  <section class="stats-section" aria-label="Indicadores da plataforma">
+    <div class="container">
+      <div class="stats-band">
+        <div class="stat">
+          <span class="stat-value"><span class="stat-number" data-target="99.9">0</span>%</span>
+          <span class="stat-label">Uptime garantido</span>
+        </div>
+        <div class="stat">
+          <span class="stat-value"><span class="stat-number" data-target="0">0</span>%</span>
+          <span class="stat-label">Perda de registros</span>
+        </div>
+        <div class="stat">
+          <span class="stat-value"><span class="stat-number" data-target="100">0</span>%</span>
+          <span class="stat-label">Auditável</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SOBRE ===== -->
+  <section class="sobre" id="sobre">
+    <div class="container">
+      <p class="section-tag">Sobre o projeto</p>
+      <h2 class="section-title">Nasceu da necessidade<br />de uma startup real</h2>
+      <div class="sobre-grid">
+        <div class="sobre-text">
+          <p>
+            A <strong>SafeCash</strong> é uma startup de antecipação de recebíveis que enfrentava
+            um problema crítico: sistemas legados com duplicidade de lançamentos e
+            ausência total de trilha de auditoria.
+          </p>
+          <p>
+            O FinTech Flow é a resposta: uma plataforma fullstack construída com
+            <strong>Node.js + React</strong>, projetada para que pequenas empresas gerenciem
+            seu fluxo de caixa com a mesma precisão de um banco.
+          </p>
+          <a href="login.html#cadastro" class="btn btn-primary btn-lg">Fazer parte da solução</a>
+        </div>
+        <div class="sobre-cards">
+          <div class="sobre-card">
+            <div class="card-icon um">✓</div>
+            <h3>Sem duplicidade</h3>
+            <p>Validações rigorosas impedem lançamentos duplicados em qualquer camada do sistema.</p>
+          </div>
+          <div class="sobre-card">
+            <div class="card-icon dois">◷</div>
+            <h3>Trilha de auditoria</h3>
+            <p>Todo registro mantém histórico de criação e alteração com identificação do responsável.</p>
+          </div>
+          <div class="sobre-card">
+            <div class="card-icon tres">⊘</div>
+            <h3>Soft delete</h3>
+            <p>Nenhum dado é apagado fisicamente. A rastreabilidade total é garantida por arquitetura.</p>
+          </div>
+          <div class="sobre-card">
+            <div class="card-icon quatro">↻</div>
+            <h3>Saldo em tempo real</h3>
+            <p>O dashboard atualiza automaticamente a cada transação registrada.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FUNCIONALIDADES ===== -->
+  <section class="features" id="funcionalidades">
+    <div class="container">
+      <p class="section-tag">Funcionalidades</p>
+      <h2 class="section-title">Tudo que você precisa<br />em um só lugar</h2>
+      <div class="features-list">
+        <div class="feature-item">
+          <div class="feature-num">01</div>
+          <div class="feature-body">
+            <h3>CRUD inteligente de transações</h3>
+            <p>Crie, edite, liste e arquive transações com validação em todas as camadas. Valores negativos são bloqueados automaticamente pela API.</p>
+          </div>
+          <span class="feature-tag">Core</span>
+        </div>
+        <div class="feature-item">
+          <div class="feature-num">02</div>
+          <div class="feature-body">
+            <h3>Dashboard com saldo automático</h3>
+            <p>Visualize entradas, saídas e saldo consolidado em tempo real. Gráficos por período com histórico mensal.</p>
+          </div>
+          <span class="feature-tag">UX</span>
+        </div>
+        <div class="feature-item">
+          <div class="feature-num">03</div>
+          <div class="feature-body">
+            <h3>API REST documentada</h3>
+            <p>Endpoints para listar, criar, editar e excluir (soft delete) transações. Documentação completa no README do repositório.</p>
+          </div>
+          <span class="feature-tag">API</span>
+        </div>
+        <div class="feature-item">
+          <div class="feature-num">04</div>
+          <div class="feature-body">
+            <h3>Banco de dados relacional</h3>
+            <p>Estrutura que suporta rastreabilidade completa: quem criou, quando alterou e qual o status atual de cada registro.</p>
+          </div>
+          <span class="feature-tag">Data</span>
+        </div>
+        <div class="feature-item">
+          <div class="feature-num">05</div>
+          <div class="feature-body">
+            <h3>Interface responsiva web e mobile</h3>
+            <p>Acesse de qualquer dispositivo. O layout se adapta a desktop, tablet e smartphone.</p>
+          </div>
+          <span class="feature-tag">UI</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SEGURANÇA ===== -->
+  <section class="seguranca" id="seguranca">
+    <div class="seg-bg" aria-hidden="true"></div>
+    <div class="container">
+      <div class="seg-inner">
+        <div class="seg-text">
+          <p class="section-tag light">Segurança</p>
+          <h2 class="section-title light">Construído para não falhar</h2>
+          <p>No mercado financeiro, um bug não é apenas um inconveniente: pode significar prejuízos milionários. O FinTech Flow foi arquitetado com múltiplas camadas de proteção.</p>
+          <ul class="seg-list">
+            <li><span>✓</span> Validação de schema em todas as rotas da API</li>
+            <li><span>✓</span> Bloqueio de valores absolutos negativos</li>
+            <li><span>✓</span> Exclusão lógica (soft delete) obrigatória</li>
+            <li><span>✓</span> Rastreabilidade de autoria por registro</li>
+            <li><span>✓</span> Controle de versão com Git e histórico de merges</li>
+          </ul>
+        </div>
+        <div class="seg-visual">
+          <div class="shield-wrapper">
+            <div class="shield-ring ring-3"></div>
+            <div class="shield-ring ring-2"></div>
+            <div class="shield-ring ring-1"></div>
+            <div class="shield-core">
+              <span class="shield-icon">◈</span>
+              <span class="shield-label">Protegido</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CTA FINAL ===== -->
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-inner">
+        <h2>Pronto para começar?</h2>
+        <p>Crie sua conta gratuitamente e experimente a tesouraria inteligente que sua empresa merece.</p>
+        <div class="cta-actions">
+          <a href="login.html#cadastro" class="btn btn-primary btn-lg">Criar conta agora</a>
+          <a href="login.html" class="btn btn-ghost btn-lg">Já tenho conta</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <!-- [ETAPA 2 · Frontend] Logo FinTech Flow (◈ + wordmark; estilos em theme.css .logo) -->
+<a href="index.html" class="logo">
+            <span class="logo-icon">◈</span>
+            <span class="logo-text">FinTech<em>Flow</em></span>
+          </a>
+          <p>Sistema de tesouraria integrada para empresas que não abrem mão de precisão.</p>
+        </div>
+        <div class="footer-links">
+          <span>Produto</span>
+          <a href="#funcionalidades">Funcionalidades</a>
+          <a href="#seguranca">Segurança</a>
+          <a href="#sobre">Sobre</a>
+        </div>
+        <div class="footer-links">
+          <span>Conta</span>
+          <a href="login.html">Login</a>
+          <a href="login.html#cadastro">Cadastro</a>
+          <a href="termos.html">Termos e privacidade</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2025 FinTech Flow · SafeCash · Todos os direitos reservados</p>
+        <p>Desenvolvido com Node.js + React · Projeto acadêmico, Prof. Willer Barros</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="index.js"></script>
+</body>
+</html>

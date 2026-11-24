@@ -1,0 +1,7 @@
+{
+  "name": "fintech-flow-e2e",
+  "private": true,
+  "description": "ETAPA 9 (Arquiteto) - teste e2e com Playwright",
+  "scripts": { "test": "node fluxo-completo.js" },
+  "devDependencies": { "playwright": "^1.49.0" }
+}

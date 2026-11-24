@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Configurações · FinTech Flow</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="theme.css" />
+  <link rel="stylesheet" href="app.css" />
+</head>
+<body data-page="configuracoes">
+<div class="app">
+
+  <aside class="sidebar" id="sidebar">
+    <!-- [ETAPA 2 · Frontend] Logo FinTech Flow (◈ + wordmark; estilos em theme.css .logo) -->
+<a href="dashboard.html" class="logo"><span class="logo-icon">◈</span><span class="logo-text">FinTech<em>Flow</em></span></a>
+    <nav class="side-nav" aria-label="Navegação principal">
+      <p class="nav-group">Visão geral</p>
+      <a href="dashboard.html" data-nav="dashboard"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="7" height="9" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="16" width="7" height="5" rx="1.5"/></svg>Dashboard</a>
+      <a href="relatorios.html" data-nav="relatorios"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>Relatórios</a>
+      <p class="nav-group">Operações</p>
+      <a href="transacoes.html" data-nav="transacoes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M7 4v16M7 20l-3-3M7 20l3-3M17 20V4M17 4l-3 3M17 4l3 3"/></svg>Transações</a>
+      <a href="nova-transacao.html" data-nav="nova-transacao"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 8v8M8 12h8"/></svg>Nova transação</a>
+      <a href="recebiveis.html" data-nav="recebiveis"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="6" width="20" height="13" rx="2"/><path d="M2 10h20M6 15h4"/></svg>Recebíveis</a>
+      <p class="nav-group">Controle</p>
+      <a href="auditoria.html" data-nav="auditoria"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3l8 3v6c0 4.5-3.4 8.3-8 9-4.6-.7-8-4.5-8-9V6z"/><path d="m9 12 2 2 4-4"/></svg>Auditoria</a>
+      <a href="configuracoes.html" data-nav="configuracoes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 6h10M18 6h2M4 12h4M12 12h8M4 18h12M20 18h0"/><circle cx="16" cy="6" r="2"/><circle cx="10" cy="12" r="2"/><circle cx="18" cy="18" r="2"/></svg>Configurações</a>
+    </nav>
+    <div class="side-foot">
+      <div class="avatar" aria-hidden="true" data-user-initials>··</div>
+      <div><strong data-user-name>Carregando…</strong><span>Tesouraria</span></div>
+      <button class="icon-btn" data-logout aria-label="Sair"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/></svg></button>
+    </div>
+  </aside>
+  <div class="scrim" id="scrim"></div>
+
+  <div class="main">
+    <header class="topbar">
+      <button class="icon-btn menu-btn" id="menuBtn" aria-label="Abrir menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 7h16M4 12h16M4 17h10"/></svg></button>
+      <label class="search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <input class="input" type="search" placeholder="Buscar" aria-label="Buscar" />
+      </label>
+      <div class="top-actions">
+        <span class="env" data-empresa>…</span>
+        <button class="icon-btn" aria-label="Notificações"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 8a6 6 0 1 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.9 1.9 0 0 0 3.4 0"/></svg><span class="bell-dot"></span></button>
+      </div>
+    </header>
+
+    <!-- [ETAPA 3 · Frontend] Atualização: PUT /api/conta/* e /api/empresa (app.js initConfiguracoes) -->
+    <main class="content">
+      <div class="page-head">
+        <div>
+          <p class="eyebrow">Controle</p>
+          <h1>Configurações</h1>
+          <p>Dados pessoais, da empresa, segurança e notificações.</p>
+        </div>
+      </div>
+
+      <div class="settings">
+        <nav class="settings-nav card" style="padding:12px" aria-label="Seções">
+          <a href="#perfil">Perfil</a>
+          <a href="#empresa">Empresa</a>
+          <a href="#seguranca">Segurança</a>
+          <a href="#notificacoes">Notificações</a>
+        </nav>
+
+        <div class="settings-stack">
+          <section class="card settings-section" id="perfil">
+            <div class="card-head"><div><h2 class="card-title">Perfil</h2><p class="card-sub">Como você aparece nos registros e na auditoria</p></div></div>
+            <form id="formPerfil" class="form-grid">
+              <div class="field"><label for="pNome">Nome</label><input class="input" id="pNome" required /></div>
+              <div class="field"><label for="pSob">Sobrenome</label><input class="input" id="pSob" /></div>
+              <div class="field span-2"><label for="pEmail">E-mail</label><input class="input" id="pEmail" type="email" required /></div>
+              <div class="span-2 form-actions" style="margin-top:4px"><button class="btn btn-primary" type="submit">Salvar perfil</button></div>
+            </form>
+          </section>
+
+          <section class="card settings-section" id="empresa">
+            <div class="card-head"><div><h2 class="card-title">Empresa</h2><p class="card-sub">Dados usados em relatórios e notas</p></div></div>
+            <form id="formEmpresa" class="form-grid">
+              <div class="field span-2"><label for="eRazao">Razão social</label><input class="input" id="eRazao" required /></div>
+              <div class="field"><label for="eCnpj">CNPJ</label><input class="input" id="eCnpj" placeholder="00.000.000/0000-00" pattern="\d{2}\.?\d{3}\.?\d{3}/?\d{4}-?\d{2}" /></div>
+              <div class="field"><label for="eFuso">Fuso horário</label>
+                <select class="input" id="eFuso"><option value="America/Sao_Paulo">America/Sao_Paulo (UTC−03:00)</option><option value="America/Manaus">America/Manaus (UTC−04:00)</option><option value="America/Noronha">America/Noronha (UTC−02:00)</option></select>
+              </div>
+              <div class="field span-2 form-actions" style="margin-top:4px"><button class="btn btn-primary" type="submit">Salvar empresa</button></div>
+            </form>
+          </section>
+
+          <section class="card settings-section" id="seguranca">
+            <div class="card-head"><div><h2 class="card-title">Segurança</h2><p class="card-sub">Senha e tempo de sessão</p></div></div>
+            <form id="formSenha" class="form-grid">
+              <div class="field span-2"><label for="sAtual">Senha atual</label><input class="input" id="sAtual" type="password" autocomplete="current-password" required /></div>
+              <div class="field"><label for="sNova">Nova senha</label><input class="input" id="sNova" name="nova" type="password" minlength="8" autocomplete="new-password" required /><span class="hint">Mínimo de 8 caracteres</span></div>
+              <div class="field"><label for="sConf">Confirmar nova senha</label><input class="input" id="sConf" name="confirma" type="password" minlength="8" autocomplete="new-password" required /></div>
+              <div class="field span-2"><label for="sSessao">Encerrar sessão após inatividade</label>
+                <select class="input" id="sSessao"><option value="15">15 minutos</option><option value="60">1 hora</option><option value="480">8 horas</option></select>
+              </div>
+              <div class="span-2 form-actions" style="margin-top:4px"><button class="btn btn-primary" type="submit">Atualizar senha</button></div>
+            </form>
+          </section>
+
+          <section class="card settings-section" id="notificacoes">
+            <div class="card-head"><div><h2 class="card-title">Notificações</h2><p class="card-sub">Escolha o que merece sua atenção</p></div></div>
+            <div class="toggle-row"><div><strong>Saldo abaixo do mínimo</strong><p>Aviso quando o saldo consolidado cair abaixo do limite definido</p></div><label class="switch"><input type="checkbox" data-pref="notifSaldoMinimo" /><span></span></label></div>
+            <div class="toggle-row"><div><strong>Vencimentos próximos</strong><p>Lembrete de recebíveis com vencimento em até 10 dias</p></div><label class="switch"><input type="checkbox" data-pref="notifVencimentos" /><span></span></label></div>
+            <div class="toggle-row"><div><strong>Resumo semanal</strong><p>Entradas, saídas e pendências por e-mail, toda segunda-feira</p></div><label class="switch"><input type="checkbox" data-pref="notifResumoSemanal" /><span></span></label></div>
+            <div class="toggle-row"><div><strong>Alterações em lançamentos</strong><p>Aviso quando outro usuário editar ou arquivar um registro</p></div><label class="switch"><input type="checkbox" data-pref="notifAlteracoes" /><span></span></label></div>
+          </section>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<div class="toast-stack" id="toasts" aria-live="polite"></div>
+<script src="api.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

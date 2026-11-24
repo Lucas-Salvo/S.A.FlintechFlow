@@ -1,0 +1,122 @@
+// =============================================================================
+// ETAPA 1 · Backend — Iniciar projeto Node (Prisma como ORM)
+// ETAPA 9 · Backend — Otimização do banco: índices marcados com [ETAPA 9]
+// ETAPA 7 · Arquiteto — Modelagem de desempenho das consultas (ver docs/ARQUITETURA.md)
+//
+// Banco padrão: SQLite (não precisa instalar nada).
+// Para usar PostgreSQL/MySQL, troque o provider e a DATABASE_URL no .env.
+// =============================================================================
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Empresa {
+  id           Int      @id @default(autoincrement())
+  razaoSocial  String
+  cnpj         String?
+  fusoHorario  String   @default("America/Sao_Paulo")
+  saldoInicial Decimal  @default(0)
+  criadoEm     DateTime @default(now())
+  atualizadoEm DateTime @updatedAt
+
+  usuarios   Usuario[]
+  transacoes Transacao[]
+  recebiveis Recebivel[]
+  auditoria  Auditoria[]
+}
+
+model Usuario {
+  id           Int      @id @default(autoincrement())
+  nome         String
+  sobrenome    String?
+  email        String   @unique
+  senhaHash    String
+  // [ETAPA 5 · Arquiteto/Backend] RBAC: "admin" | "operador" | "leitor"
+  papel        String   @default("operador")
+  criadoEm     DateTime @default(now())
+  atualizadoEm DateTime @updatedAt
+
+  // Preferências (tela de configurações)
+  sessaoMinutos        Int     @default(60)
+  notifSaldoMinimo     Boolean @default(true)
+  notifVencimentos     Boolean @default(true)
+  notifResumoSemanal   Boolean @default(false)
+  notifAlteracoes      Boolean @default(true)
+
+  // Recuperação de senha (guardamos só o hash do token)
+  resetTokenHash String?
+  resetTokenExp  DateTime?
+
+  empresaId Int
+  empresa   Empresa @relation(fields: [empresaId], references: [id])
+
+  transacoes Transacao[]
+  auditoria  Auditoria[]
+
+  @@index([empresaId])      // [ETAPA 9] listagem de usuários da empresa
+  @@index([resetTokenHash]) // [ETAPA 9] busca do token de recuperação de senha
+}
+
+model Transacao {
+  id                 Int       @id @default(autoincrement())
+  descricao          String
+  categoria          String
+  tipo               String    // "entrada" | "saida"
+  valor              Decimal   // sempre positivo; o tipo define o sentido
+  data               DateTime
+  status             String    @default("concluido") // "concluido" | "pendente"
+  observacoes        String?
+  arquivado          Boolean   @default(false)       // soft delete
+  arquivadoEm        DateTime?
+  motivoArquivamento String?
+  criadoEm           DateTime  @default(now())
+  atualizadoEm       DateTime  @updatedAt
+
+  empresaId     Int
+  empresa       Empresa @relation(fields: [empresaId], references: [id])
+  responsavelId Int
+  responsavel   Usuario @relation(fields: [responsavelId], references: [id])
+
+  @@index([empresaId, data])                // [ETAPA 9] listagem/relatórios por período
+  @@index([empresaId, arquivado, status])   // [ETAPA 9] filtros da tela de transações
+  @@index([empresaId, valor, data])         // [ETAPA 9] checagem de duplicidade
+}
+
+model Recebivel {
+  id           Int      @id @default(autoincrement())
+  sacado       String
+  vencimento   DateTime
+  valorBruto   Decimal
+  taxa         Decimal  // % ao mês
+  status       String   @default("aberto") // "aberto" | "antecipado" | "liquidado"
+  antecipadoEm DateTime?
+  criadoEm     DateTime @default(now())
+  atualizadoEm DateTime @updatedAt
+
+  empresaId Int
+  empresa   Empresa @relation(fields: [empresaId], references: [id])
+
+  @@index([empresaId, status, vencimento]) // [ETAPA 9] recebíveis em aberto por vencimento
+}
+
+model Auditoria {
+  id          Int      @id @default(autoincrement())
+  quando      DateTime @default(now())
+  acao        String   // "criou" | "editou" | "arquivou" | "bloqueou" | "login"
+  alvo        String   // ex.: "TX-4821", "REC-3321", "Sessão"
+  detalhe     String
+  usuarioNome String   // guardado para o histórico não mudar se o usuário for renomeado
+
+  usuarioId Int?
+  usuario   Usuario? @relation(fields: [usuarioId], references: [id])
+  empresaId Int
+  empresa   Empresa  @relation(fields: [empresaId], references: [id])
+
+  @@index([empresaId, quando]) // [ETAPA 9] linha do tempo da auditoria
+  @@index([empresaId, acao])   // [ETAPA 9] filtro e resumo por ação
+}

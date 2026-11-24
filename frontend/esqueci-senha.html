@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Recuperar senha · FinTech Flow</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="theme.css" />
+  <link rel="stylesheet" href="public.css" />
+</head>
+<body>
+<main class="solo">
+  <div class="solo-card">
+    <!-- [ETAPA 2 · Frontend] Logo FinTech Flow (◈ + wordmark; estilos em theme.css .logo) -->
+<a href="index.html" class="logo"><span class="logo-icon">◈</span><span class="logo-text">FinTech<em>Flow</em></span></a>
+
+    <div class="card" id="cardForm">
+      <div class="auth-title" style="margin-bottom:22px">
+        <h1>Recuperar senha</h1>
+        <p>Informe o e-mail da sua conta. Enviaremos um link para criar uma nova senha.</p>
+      </div>
+      <form class="auth-form" id="recForm" novalidate>
+        <div class="field">
+          <label for="recEmail">E-mail</label>
+          <input class="input" type="email" id="recEmail" placeholder="voce@empresa.com" autocomplete="email" required />
+          <span class="field-error" id="recErr"></span>
+        </div>
+        <button class="btn btn-primary btn-lg btn-block" type="submit">Enviar link</button>
+      </form>
+    </div>
+
+    <div class="card hidden" id="cardOk">
+      <div class="success-msg">
+        <div class="success-icon">✓</div>
+        <h2>Verifique seu e-mail</h2>
+        <p>Se o endereço estiver cadastrado, você receberá um link para redefinir a senha em instantes.</p>
+        <a class="btn btn-soft btn-block" href="login.html">Voltar para o login</a>
+      </div>
+    </div>
+
+    <a href="login.html" class="solo-back">← Voltar para o login</a>
+  </div>
+</main>
+
+<script src="api.js"></script>
+<script>
+  (() => {
+    const emailEl = document.getElementById('recEmail');
+    const pre = new URLSearchParams(window.location.search).get('email');
+    if (pre) emailEl.value = pre;
+
+    const form = document.getElementById('recForm');
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const ok = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailEl.value.trim());
+      emailEl.classList.toggle('is-invalid', !ok);
+      document.getElementById('recErr').textContent = ok ? '' : 'Informe um e-mail válido.';
+      if (!ok) return;
+      const botao = form.querySelector('button[type="submit"]');
+      botao.disabled = true;
+      try {
+        await api.post('/auth/esqueci-senha', { email: emailEl.value.trim() });
+        document.getElementById('cardForm').classList.add('hidden');
+        document.getElementById('cardOk').classList.remove('hidden');
+      } catch (err) {
+        document.getElementById('recErr').textContent = err.message;
+      } finally {
+        botao.disabled = false;
+      }
+    });
+  })();
+</script>
+</body>
+</html>
