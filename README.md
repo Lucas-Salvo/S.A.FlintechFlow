@@ -34,4 +34,5 @@ Depois abra `frontend/login.html` com o **Live Server** (porta 5500).
 
 ## Vídeo de demonstração (Etapa 11)
 
-_Coloque aqui o link do vídeo._
+https://drive.google.com/file/d/1khJKD7_HHwzYVkzVjro9wMjXN6z8BFBJ/view?usp=sharing
+

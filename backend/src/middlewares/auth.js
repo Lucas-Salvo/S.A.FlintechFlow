@@ -1,13 +1,4 @@
-/* =============================================================================
- * ETAPA 4 · Backend — Desenvolvimento de autenticação JWT
- *   `autenticar` lê o JWT do cookie httpOnly (ou do header Bearer), valida e
- *   coloca o usuário em req.user.
- *
- * ETAPA 5 · Backend — Rotas protegidas e validação de middleware
- * ETAPA 5 · Arquiteto — Definição dos critérios de segurança e RBAC
- *   `autorizar(...papeis)` libera a rota só para os papéis informados.
- *   A matriz de permissões está em PERMISSOES e em docs/ARQUITETURA.md.
- * ============================================================================= */
+
 const jwt = require('jsonwebtoken');
 const prisma = require('../config/prisma');
 const { JWT_SECRET } = require('../config/env');

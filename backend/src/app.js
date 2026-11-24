@@ -1,16 +1,4 @@
-/* =============================================================================
- * ETAPA 2 · Backend — Arquitetura de pastas
- *
- *   src/
- *   ├── server.js        ETAPA 1  · sobe o servidor
- *   ├── app.js           ETAPA 2  · monta o Express (este arquivo)
- *   ├── config/          ETAPA 2  · .env e cliente Prisma
- *   ├── routes/          ETAPA 3  · mapa das rotas GET / POST / PUT / PATCH
- *   ├── controllers/     ETAPA 3+ · regra de negócio de cada recurso
- *   ├── middlewares/     ETAPA 4/5/8 · JWT, RBAC, validação e erros
- *   ├── utils/           ETAPA 8  · validações e formatações compartilhadas
- *   └── docs/            ETAPA 10 (Arquiteto) · OpenAPI / Swagger
- * ============================================================================= */
+
 const express = require('express');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');

@@ -1,9 +1,4 @@
-/* =============================================================================
- * ETAPA 8 · Backend — Tratamento centralizado de erros e validação
- *   Todo erro lançado nas rotas (Express 5 captura async automaticamente)
- *   chega aqui e vira um JSON padronizado:
- *     { "erro": "mensagem", "campos": { "campo": "mensagem" } }
- * ============================================================================= */
+
 const AppError = require('../utils/AppError');
 const { IS_PROD } = require('../config/env');
 

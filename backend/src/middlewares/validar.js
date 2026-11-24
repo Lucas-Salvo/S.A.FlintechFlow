@@ -1,8 +1,4 @@
-/* =============================================================================
- * ETAPA 5 · Backend — Validação de middleware
- *   Validações que rodam ANTES do controller, direto nas rotas.
- * ETAPA 8 · Backend — Validação centralizada (junto com utils/valores.js)
- * ============================================================================= */
+
 const AppError = require('../utils/AppError');
 const { parseId } = require('../utils/valores');
 
